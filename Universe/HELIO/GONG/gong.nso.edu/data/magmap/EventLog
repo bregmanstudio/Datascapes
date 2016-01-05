@@ -1,0 +1,114 @@
+2008-12-24
+	* Fixed erroneusly labeled JPG files for integral CR maps.
+
+2008-12-17
+	* Re converted and relabeled all fits to JPG.
+          Used a common font available on any CPU.
+
+2008-05-28
+	* Done with reprocessing and with correcting the point size
+          in some of the JPG files. 4 per day maps through 2008-03-20
+          and then 1 per hour after that.
+
+2008-05-01
+	* Mostly done with updated software and pipeline redesign.
+          The updated software fixes the annual periodicity and some
+          other pole issues we located. And the pipeline redesign
+          has increased our synoptic map cadence to a more regulated
+          once-per-hour.
+        
+2008-03-19
+        * Change to use of standard polefilled image for janus construction.
+	* Installation of new polefiller2d software for integral synoptic maps.
+        * Still using original polefiller for hourly synoptic maps.
+
+2008-03-17
+	* During the last few days we had some runaway processes on the
+          main CPU that created a very busy machine which in turn
+          caused the mapmap software to take 5 or 6 hours to generate
+          a single one hour synoptic map.
+
+2008-01-14
+	* Put up NOTICE about periodicity in data.
+        
+2007-12-06
+	* Added movies for all Integral Models
+        * Added movies for the two Open Field Change Models
+
+2007-12-04
+	* Added Field Change Models for Integral CR Synoptic Maps
+	* Added Standard Models for Integral CR Synoptic Maps
+
+2007-11-29
+
+	* Changed product names for integral synoptic maps
+          (since uppercase cannot be used):
+             mqs == bqS - synoptic map (integral) 		FITS
+             mqj == bqJ - synoptic map (integral) 		JPG
+
+2007-10-06
+	* Added web pages for new stereo models.
+
+	* New products:
+             bq8 - model - stereo A plot
+             bq9 - model - stereo B plot
+             bqw - combination object: bq8 bqg bq9
+
+2007-10-03
+	* A side effect of using The Keep to serve objects from
+          is that all fits files are stored in GZIP (*.gz) format.
+
+	* Using The Keep style tree to serve objects means that the JPG
+          versions of the synoptic maps are now formal data products.
+          Here is a quick summary of data product names:
+
+             bqs - synoptic map (standard) 		FITS
+             bqj - synoptic map (janus)    		FITS
+             bqS - synoptic map (integral) 		FITS
+
+             bq1 - synoptic map (standard) 		JPG
+             bq2 - synoptic map (janus)    		JPG
+             bqJ - synoptic map (integral) 		JPG
+
+             bqf - Synoptic Coronal Hole Plot 		GIF
+             bqg - Line-Of-Sight Coronal Hole Plot 	GIF
+             bq3 - Synoptic Field Plot 			GIF
+             bq4 - Line-Of-Sight Field Plot      	GIF
+             bq5 - Synoptic Ecliptic-Plane Field Plot 	GIF
+             bq6 - Line-Of-Sight Ecliptic-Plane Field Plot GIF
+             bq7 - Top View Ecliptic-Plane Field Plot 	GIF
+             bqc - model coefficients      		TXT (.dat)
+
+             bqA - combination object: bq1 and bq2
+             bqC - combination object: bq1 and bqf
+             bqG - combination object: bqf and bqg
+
+2007-10-01
+	* Rewrite all FITS headers into the new GONG standard.
+          Synoptic Maps affected: Integral CR, Standard Hourly, Janus Hourly
+        
+	* Make sure all FITS files are in units 'gauss' and have the proper
+          BUNIT keyword in place.
+          Synoptic Maps affected: Integral CR, Standard Hourly, Janus Hourly
+
+	* Change archive storage to the GONG style date-tree structure known
+          as "The Keep".
+          
+	* Change web page generator to serve direct from "The Keep".
+          
+2007-09-28
+	* Modified magnetogram pipeline to rewrite FITS headers for all
+          FITS file products.
+
+2007-08-23
+	* Modified to generate 40 coefficients instead of 20.
+
+2007-08-22
+	* Modified product names to be of the form sstttYYMMDDtHHMMcCCCC_DDD_L.*
+	  eg. mrbqs070714t2359c2050_003.fits which is the standard GONG
+          name concatenated with the current Carrington Rotation number
+          and degree.
+
+---
+
+$Id: EventLog,v 1.22 2008/12/24 17:21:24 bolding Exp $

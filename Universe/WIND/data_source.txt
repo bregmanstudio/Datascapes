@@ -1,0 +1,3 @@
+http://vho.nasa.gov/mission/wind/mfi/
+http://cdaweb.gsfc.nasa.gov/misc/NotesW.html#WI_H0_MFI
+http://wind.nasa.gov/data_sources.php#MFI_Data

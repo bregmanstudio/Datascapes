@@ -1,0 +1,2 @@
+ftp://gong2.nso.edu/mag/
+http://gong.nso.edu/data/magmap/QR/bqs/

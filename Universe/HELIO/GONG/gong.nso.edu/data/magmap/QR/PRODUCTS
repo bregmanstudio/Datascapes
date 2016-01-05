@@ -1,0 +1,66 @@
+#
+# This is a simple list of GONG product names used in The Keep,
+# the data-tree structure we use to store GONG products.
+#
+
+bqs - synoptic map (standard) fits file
+bqj - synoptic map (janus)    fits file
+
+bq1 - synoptic map (standard) JPG file
+bq2 - synoptic map (janus)    JPG file
+
+bqf - model synoptic coronal hole plot
+bqg - model line of sight synoptic coronal hole plot
+bq3 - model synoptic field plot
+bq4 - model line of sight field plot
+bq5 - model synoptic ecliptic-plane field plot
+bq6 - model line of sight ecliptic-plane field plot
+bq7 - model top view ecliptic-plane field plot
+bq8 - model - stereo A plot
+bq9 - model - stereo B plot
+bqc - model coefficients      TXT file (.dat)
+
+bqA - combination object: bq1 and bq2
+bqC - combination object: bq1 and bqf
+bqG - combination object: bqf and bqg
+
+bqW - combination object: bq8 bqg bq9
+
+#
+# These are for the integral synoptic maps
+#
+mqs - integral synoptic map fits file
+mqj - integral synoptic map JPG file
+mqf - integral model synoptic coronal hole plot
+mqg - integral model line of sight synoptic coronal hole plot
+mq3 - integral model synoptic field plot
+mq4 - integral model line of sight field plot
+mq5 - integral model synoptic ecliptic-plane field plot
+mq6 - integral model line of sight ecliptic-plane field plot
+mq7 - integral model top view ecliptic-plane field plot
+mqc - integral model coefficients      TXT file (.dat)
+mqh - integral model .ch.fits fitshole
+mqn - integral model nl.dat
+
+mc1 - fchange_a.gif  - Opening & Closing Extrapolated Fields -- After
+mc2 - fchange_b.gif  - Opening & Closing Extrapolated Fields -- Before
+mc3 - fchangen_a.gif - Opening & Closing Extrapolated Fields, North View, After
+mc4 - fchangen_b.gif - Opening & Closing Extrapolated Fields, North View, Before
+mc5 - fchanges_a.gif - Opening & Closing Extrapolated Fields, South View, After
+mc6 - fchanges_b.gif - Opening & Closing Extrapolated Fields, South View, Before
+mc7 - open_ball.gif  - Opening & Closing Fields
+mc8 - open_bmed.gif  - Opening & Closing Strong Fields
+mc9 - fchangem.gif   - Animated: Opening & Closing Extrapolated Fields
+mcn - fchangenm.gif  - Animated: Opening & Closing Extrapolated Fields, North
+mcs - fchangesm.gif  - Animated: Opening & Closing Extrapolated Fields, South
+
+mqu - Integral Unpolefilled Synoptic Maps
+
+bqp - Hourly future pole list
+
+bca - used to mark that a bqa remap request was submitted to Conductor
+bcs - used to mark that a bqs request was submitted to Conductor
+
+---
+
+$Id: PRODUCTS,v 1.8 2008/05/28 23:19:57 bolding Exp $

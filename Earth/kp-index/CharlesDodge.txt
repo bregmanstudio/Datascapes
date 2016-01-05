@@ -1,0 +1,6 @@
+
+From: http://music.columbia.edu/cmc/MusicAndComputers/popups/chapter1/xbit_1_1.php
+
+Figure 1  Charles Dodge is an important computer music composer and pioneer whose early work Earth’s Magnetic Field is an interesting example of sonification of a natural function. Dodge (with his collaborator, scientist Bruce Boller) used a graph of what are called the Kp indices, which chart the "average magnetic activity" for the Earth:
+
+"The succession of notes in the music corresponds to the natural succession of the Kp indices for the year 1961... The musical interpretration consists of setting up a correlation between the level of the Kp reading and the pitch of the note (in a diatonic collection over four octaves), and compressing the 2,920 readings for the year into just over eight minutes of musical time" (from the liner notes to Charles Dodge, Earth’s Magnetic Field, Nonesuch LP H-71250).

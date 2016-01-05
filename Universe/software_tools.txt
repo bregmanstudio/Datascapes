@@ -1,0 +1,2 @@
+http://spacepy.lanl.gov/doc/pycdf.html
+http://dan.iel.fm/kplr/
