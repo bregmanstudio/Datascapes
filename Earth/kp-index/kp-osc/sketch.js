@@ -6,7 +6,6 @@ var spectum;
 var kpdata;
 var ki = 0;
 
-
 function preload(){
   kpdata = loadTable("assets/kp-index.csv", "csv", "header");
 }

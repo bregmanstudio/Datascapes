@@ -51,7 +51,7 @@ def map_pitch(x, rule='12m', how='mean', mode=modes['major']):
 	Map an integer (x) to a lookup table (mode).
 	"""
 	x2 = x.resample(rule, how, closed='left')
-	for i, v in enumerate(x2):
+	for i, v in enumerate(x2['value']):
 		x2.iloc[i] = mode_map(v, mode)
 	return x2
 
@@ -69,6 +69,15 @@ def synthesize(x, dur=1.0, f0=220.0, **params):
 	"""
 	snd = [make_note(n, 1.0, dur, base_freq=f0, **params) for n in x]
 	return br.balance_signal(np.hstack(snd))
+
+# Covenience function to mask RGB color channels
+def extract_color(data, n):
+	 channels = data.copy()
+	 for ch in range(channels.shape[2]):
+		if ch != n:
+			channels[:,:,ch] = channels[:,:,ch] * 0 
+	 return channels
+
 
 def image_to_spectrum(data, **kwargs):
 	"""
