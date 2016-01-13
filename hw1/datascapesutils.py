@@ -3,6 +3,7 @@
 import pylab as pl
 import bregman.suite as br
 import numpy as np
+import sys, os
 
 kp_epd = 8 # events per day
 kp_evy = kp_epd*365.25 # events per year
@@ -79,7 +80,7 @@ def extract_color(data, n):
 	 return channels
 
 
-def image_to_spectrum(data, **kwargs):
+def image_to_spectrum(data, phasefun=pl.randn, **kwargs):
 	"""
 	Make a spectrum object (LinearFrequencySpectrum) that will have the correct dimensions for the given image.
 	inputs:
@@ -93,13 +94,16 @@ def image_to_spectrum(data, **kwargs):
 	imHeight, imWidth = data.shape
 	nF = int(2**(np.ceil(np.log2(imHeight))+1)) # Make the spectrum size at least double the image height
 	nsamps = int(np.ceil(imWidth * nF/4)) # Calculate number of imWidth frames x nF/4
-	print nF, nsamps, nsamps/(nF/4)
-	spec = br.LinearFrequencySpectrum(pl.randn(nsamps), nfft=nF, wfft=nF/2, nhop=nF/4, **kwargs)
+	print "spectrum size=",nF, "num samples=",nsamps, "num STFT frames=",nsamps/(nF/4)
+	sys.stdout.flush()
+	spec = br.LinearFrequencySpectrum(phasefun(nsamps), nfft=nF, wfft=nF/2, nhop=nF/4, **kwargs)
 	spec.STFT[:imHeight,:imWidth] = data * np.exp(-1j*np.angle(spec.STFT[:imHeight,:imWidth]))
+	spec.STFT[imHeight:,imWidth:] = 0.0 * np.exp(-1j*np.angle(spec.STFT[imHeight:,imWidth:]))
 	spec.X[:imHeight,:imWidth] = data
+	spec.X[imHeight:,imWidth:] = 0.0 # Zero out the the magnitudes in the non-image portion of the spectrum
 	return spec
 
-def image_to_logspectrum(data, **kwargs):
+def image_to_logspectrum(data, phasefun=pl.randn, **kwargs):
 	"""
 	Make a log frequency spectrum object (LogFrequencySpectrum) that will have the correct dimensions for the given image.
 	inputs:
@@ -114,9 +118,35 @@ def image_to_logspectrum(data, **kwargs):
 	nF = kwargs.pop('nfft',2048)
 	nB = kwargs.pop('nbpo',int(np.ceil(imHeight//7))) # Make the bands per octave the image height / 7 octaves
 	nsamps = int(np.ceil(imWidth * nF/4)) # Calculate  
-	print nF, nsamps, nsamps/(nF/4)
-	spec = br.LogFrequencySpectrum(pl.randn(nsamps), nfft=nF, wfft=nF/2, nhop=nF/4, nbpo=nB, **kwargs)
+	print "spectrum size=",nF, "num samples=",nsamps, "num STFT frames=",nsamps/(nF/4), "log-frequency bands per octave=", nB
+	sys.stdout.flush()
+	spec = br.LogFrequencySpectrum(phasefun(nsamps), nfft=nF, wfft=nF/2, nhop=nF/4, nbpo=nB, **kwargs)
 	spec.STFT[:imHeight,:imWidth] = data * np.exp(-1j*np.angle(spec.STFT[:imHeight,:imWidth]))
+	spec.STFT[imHeight:,imWidth:] = 0.0 * np.exp(-1j*np.angle(spec.STFT[imHeight:,imWidth:]))
 	spec.X[:imHeight,:imWidth] = data
+	spec.X[imHeight:,imWidth:] = 0.0 # Zero out the magnitudes in the non-image portion of the spectrum
 	return spec
+
+def threshold(data, minthresh, minval=0.0, maxthresh=None, maxval=None):
+	"""
+	In-place threshold data array so that: data<=minthresh, data=minval; Optionally: if data>maxthresh, data=maxval.
+	inputs:
+		data - the array to be thresholded
+		minthresh - the lower threshold for the data
+		minval - the value to which data below the threshold are set [0.0]
+		maxthresh - the maximum threshold for the data
+		maxval - the value to which data above the threshold are set
+	outputs:
+		thresholded data array
+	"""
+	data[data<=minthresh]=minval
+	if maxthresh is not None and maxval is not None:
+		data[data>maxthresh]=maxval
+	return data
+
+#def softmaxify(data, beta=5.0):
+#	"""
+#	Apply the logistic (softmax) curve to the data, squashing it to between [-1.0 and 1.0]
+#	"""
+#	return 1. / (1.0 + exp(-beta * data))
 
