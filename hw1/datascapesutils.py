@@ -32,7 +32,7 @@ def make_note(note=0, amp=1.0, dur=1.0, base_freq=440.0, **params):
 	"""
 	params.setdefault('num_harmonics',10)
 	params.setdefault('sr',44100)
-	params.setdefault('num_points', int(round(dur*params['sample_rate'])))
+	params.setdefault('num_points', int(round(dur*params['sr'])))
 	w = np.hanning(88)
 	wn = len(w) // 2.0
 	h = amp * br.harmonics(f0=base_freq*2**(note/12.0), **params)
