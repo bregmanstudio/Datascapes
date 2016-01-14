@@ -26,9 +26,12 @@ def make_note(note=0, amp=1.0, dur=1.0, base_freq=440.0, **params):
 		note - 1/2 step pitch indx from A440 [0]
 		 amp - amplitude of the sound [1.0]
 		 dur - duration of the sound (seconds) [1.0]
+		 **params - keyword argument list, [**default_signal_params()]
+	outputs:
+		snd - audio-rate signal spanning the note's duration, use play(snd) to hear it.
 	"""
 	params.setdefault('num_harmonics',10)
-	params.setdefault('sample_rate',44100)
+	params.setdefault('sr',44100)
 	params.setdefault('num_points', int(round(dur*params['sample_rate'])))
 	w = np.hanning(88)
 	wn = len(w) // 2.0
