@@ -85,6 +85,7 @@ def image_to_spectrum(data, phasefun=pl.randn, **kwargs):
 	Make a spectrum object (LinearFrequencySpectrum) that will have the correct dimensions for the given image.
 	inputs:
 		data - 2D or 3D (RGB) data array, organized as Height x Width [x channels]
+		phasefun - function to generate reconstruction phases [randn]
 	outputs:
 		BregmanToolkit spectrogram object
 	"""
@@ -108,6 +109,7 @@ def image_to_logspectrum(data, phasefun=pl.randn, **kwargs):
 	Make a log frequency spectrum object (LogFrequencySpectrum) that will have the correct dimensions for the given image.
 	inputs:
 		data - 2D or 3D (RGB) data array, organized as Height x Width [x channels]
+		phasefun - function to generate reconstruction phases [randn]
 	outputs:
 		BregmanToolkit log spectrogram object
 	"""
@@ -144,9 +146,9 @@ def threshold(data, minthresh, minval=0.0, maxthresh=None, maxval=None):
 		data[data>maxthresh]=maxval
 	return data
 
-#def softmaxify(data, beta=5.0):
-#	"""
-#	Apply the logistic (softmax) curve to the data, squashing it to between [-1.0 and 1.0]
-#	"""
-#	return 1. / (1.0 + exp(-beta * data))
+def softmaxify(data, beta=5.0):
+	"""
+	Apply the logistic (softmax) curve to the data, squashing it between [-1.0 and 1.0]
+	"""
+	return 1. / (1.0 + exp(-beta * data))
 
