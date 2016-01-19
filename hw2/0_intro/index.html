@@ -1,0 +1,278 @@
+<html>
+<head>
+<style>
+p{width:600px;}
+pre{background:#FFF0F0;width:800px;}
+</style>
+</head>
+<body>
+<div  style="margin-left:50px;font-size:11pt">
+<h1>Homework 2: p5.js</h1>
+
+<a href="http://p5js.org" target=_blank>p5.js</a> is a popular <i>imperative</i> programming language for the arts that is now available in javascript.
+
+In this homework, you will learn how to use <code>p5.js</code> in your Web browser to rapidly <i>sketch</i> your audio and visual ideas. Follow the links to learn more about each keyword or function. 
+
+<h2>Download p5.js</h2>
+
+Javascript runs natively inside Web browsers, so there is no app to download. p5.js is a set of scripts that allow you to use javascript for audio-visual programming in the browser and on the Web with ease.
+
+To get started, go to <a href="http://p5js.org/get-started/" target=_blank>get started with p5.js.</a>
+
+<ul>
+<li><a href="https://github.com/processing/p5.js/wiki/p5.js-overview" target=_blank>Overview</a>
+<li><a href="http://p5js.org/reference/" target=_blank>Reference</a> for full documentation
+<li><a href="http://p5js.org/tutorials/" target=_blank>Tutorials</a>
+<li><a href="http://p5js.org/examples/" target=_blank>Examples</a>
+</ul>
+
+<h1>p5.js Boot Camp</h1>
+Following is a very quick overview of some of the programming concepts you will need.
+
+<h2><code>setup(), draw()</code></h2>
+
+<p>
+<code>function setup()</code> and <code>function draw()</code> control the initialization and drawing of sketches. Setup gets called once, when we load the Web page. Then draw is called repeatedly by p5.js. Here, we do not see any change over time, because the exact same drawing is being overwritten continuously.
+
+<pre>
+
+function setup(){
+  createCanvas(400,300); 
+}
+
+function draw(){
+  ellipse(width/2, height/2, 50,75);
+}
+</pre>
+<iframe width=410 height=320 src="ex01.html">
+</iframe>
+
+<h2><code>background(), fill()</code></h2>
+
+The <code>background()</code> function takes a color argument, a number from <code>0..255</code>. A single number representing color means the color will be grayscale, with 0=black and 255=white.
+
+<pre>
+function setup(){
+  createCanvas(400,300); // Make a canvas that is 400 px width and 300 px tall
+}
+
+function draw(){
+	background(0);
+	// draw ellipse with random variation
+  fill(255);
+  ellipse(width/2, height/2, 50,50); // Make an ellipse
+  fill(127);
+  ellipse(width/2, height-100, 30,30); // Make another ellipse
+}
+</pre>
+
+<iframe width=410 height=320 src="ex02.html">
+</iframe>
+
+<h2><code>stroke(), strokeWeight()</code></h2>
+
+<pre>
+// Example of strokeWeight and stroke commands
+
+function setup(){
+  createCanvas(400,300);   
+}
+
+function draw(){
+  background(255);
+  fill(255); // The color of the interior
+  strokeWeight(20); // The thickness of the outline stroke
+  stroke(0); // The ouline stroke color 
+  ellipse(width/2, 3*height/4, 30,30); // 3/4 height
+}	
+</pre>
+
+<iframe width=410 height=320 src="ex03.html">
+</iframe>
+
+
+
+<h2><code>random()</code></h2>
+
+The random() function lets us use random values in place of numbers. We use <code>random(50)</code> to generate random numbers in the range <code>0..50</code>. We use <code>random(-100,100)</code> to generate values between -100 and +100 for the position and size of an ellipse. We see multple ellipses because the draw function is called repeatedly and automatically by p5.js.
+
+<pre>
+function setup(){
+  createCanvas(400,300); // Make a canvas that is 400 px width and 300 px tall
+}
+
+function draw(){
+  // draw ellipse with random variation
+  stroke(random(255));
+  strokeWeight(rando<(50));
+  ellipse(width/2+random(-100,100), height/2+random(-100,100), random(50),random(50)); // Make an ellipse
+}
+</pre>
+
+<iframe width=410 height=320 src="ex04.html">
+</iframe>
+
+<h2>RGB Color</h2>
+
+Three numbers with any of the color setting functions <code>fill(), stroke(), backgrond()</code> sets the Red, Gree, and Blue color channels.
+
+<pre>
+function setup(){
+  createCanvas(400,300); // Make a canvas that is 400 px width and 300 px tall
+  background(0); // Set background here for static sketches
+}
+
+function draw(){
+  // draw ellipse with a thick outline, interior and exterior different tertiary colors
+  stroke(127,127,255);
+  strokeWeight(20);
+  fill(255,127,127);
+  ellipse(width/2, height/2, 100, 60);
+
+  // draw a fat 15-pixel point, set its color with stroke()
+  strokeWeight(15);
+  stroke(127,255,127);
+  point(width/2,height/2);
+}	
+</pre>
+
+<iframe width=410 height=320 src="ex05.html">
+</iframe>
+
+<h2>Transparent Color: RGBA</h2>
+
+<pre>
+function setup(){
+  createCanvas(400,300); 
+  background(0); 
+  noStroke(); // Turn off shape outlines
+}
+
+function draw(){
+  fill(255,0,255,32); // Fourth argument is transpareny: 0=transparent, 255=opaque
+  ellipse(width/2+50, height/2, 200, 200);
+
+  fill(0,255,255,32); // Fourth argument is transpareny: 0=transparent, 255=opaque
+  ellipse(width/2-50, height/2, 200, 200);
+}
+</pre>
+
+<iframe width=410 height=320 src="ex06.html">
+</iframe>
+
+<h2>Random Colors</h2>
+
+As with shades and position arguments above, we can randomize color values too. We use the same <code>random(255)</code> function call for each color argument.
+
+<pre>
+function setup(){
+  createCanvas(400,300); 
+  background(0); 
+  noStroke(); // Turn off shape outlines
+  frameRate(8); // Only draw 4 frames per second
+}
+
+function draw(){
+  fill(random(255),random(255),random(255)); // random color mix
+  ellipse(random(width), random(height), random(200), random(200));
+} 	
+</pre>
+
+<iframe width=410 height=320 src="ex07.html">
+</iframe>
+
+<h2><code>colorMode(HSB)</code></h2>
+
+An alternative to RGB(A) color control is to use the more perceptually organized Hue, Saturation, Brightnes <code>colorMode(HSB)</code>. We set the maximum value for each of the color parameters like this: <code>colorMode(HSB,1,1,1)</code>.
+
+<pre>
+function setup(){
+  createCanvas(400,300); 
+  background(0); 
+  noStroke(); // Turn off shape outlines
+  frameRate(8); // Only draw 4 frames per second
+  colorMode(HSB,360,1,1); // Set Mode to: Hue, Saturation, Brighness
+}
+
+function draw(){
+  fill(random(360),1,random(0.5)+0.5); // random hue, random brightness
+  ellipse(random(width), random(height), random(200), random(200));
+} 
+</pre>
+
+<iframe width=410 height=320 src="ex08.html">
+</iframe>
+
+<h2>Time-Motion</h2>
+
+We use update rules in the <code>draw()</code> function to continuously change variables by small amounts.
+Here is an example of continuously drawing time-varying information.
+
+<pre>
+var x = 0; // Declare a global variable, this will be updated in draw()
+var y; // Random height
+var c; // Random color
+
+function setup(){
+  createCanvas(400,300); 
+  background(0); 
+  noStroke(); // Turn off shape outlines
+  colorMode(HSB,360,1,1,100); // Set Mode to: Hue, Saturation, Brighness
+  y = height / 2;
+  c = random(360);
+}
+
+function draw(){
+  background(0,1,0,10) //setting transparency yields a trace
+  fill(c, 1, 1); // hue, saturation, brightness
+  ellipse(x, y, 10, 10);
+
+  // Update rules
+  x = (x + 4) % width; // wrap at screen edge
+  y = constrain(y+random(-10,10), 5, height); // stay on screen
+  c = constrain(c+random(-10,10), 0, 360); // stay within 360 degrees
+} 
+</pre>
+
+<iframe width=410 height=320 src="ex09.html">
+</iframe>
+
+<h1>Sound</h1>
+
+p5.js supports sound through the browser's WebAudio API implementation. Most modern browsers support the WebAudio API. If the following sound examples do not work for you, then swtich to an alternative browser (Google Chome, or Firefox see to work well).
+
+<ul>
+<li><a href="http://p5js.org/reference/#/libraries/p5.sound">p5.sound reference</a>
+</ul>
+
+<h2><code>p5.Oscillator()</code></h2>
+
+The main tool for sonification is <code>p5.Oscillator</code>, which produces a periodic waveform at a given frequency and amplitude.
+<pre>
+var osc;
+
+function setup(){
+  createCanvas(400,300); // Make a canvas that is 400 px width and 300 px tall
+  osc = new p5.Oscillator("triangle"); // Triangle wave oscillator
+  osc.amp(0.0); // Set the amplitude
+  osc.start()
+  fill(255);
+}
+
+function draw(){
+  background(0,10); // grayscale with transparency
+  // draw ellipse with random variation
+  if(mouseIsPressed){
+    ellipse(mouseX,mouseY,20,20);
+    osc.amp(map(mouseY,height,0,0,1)); // map mouseY to 0 bottom of screen, 1 top.
+    osc.freq(map(mouseX,0,width,50,1000)); // map mouseX to 50Hz-1000Hz
+  }
+}
+</pre>
+
+<iframe width=410 height=320 src="ex10.html">
+</iframe>
+
+</div>
+</body>
+</html>
