@@ -6,6 +6,7 @@ function setup(){
   osc.amp(0.0); // Set the amplitude
   osc.start()
   fill(255);
+  noStroke();
 }
 
 function draw(){
