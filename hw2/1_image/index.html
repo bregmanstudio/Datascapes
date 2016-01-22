@@ -1,0 +1,61 @@
+<html>
+<head>
+<style>
+p{width:600px;}
+pre{background:#FFF0F0;width:800px;}
+</style>
+</head>
+</head>
+<body>
+<div  style="margin-left:50px;font-size:11pt">
+<h2>Local Server</h2>
+
+Because javascript is a Web language, and we are operating the program from within a browser, whenever we need to access assets from a folder, we need to be running a <a href="https://github.com/processing/p5.js/wiki/Local-server">local server.</a> This means that your computer will behave as if it is a Web server to programs running on it when they make requests for Web resources via <code>http://localhost:8080</code>. Be sure to run the <code>http-server</code> from a folder that is either your sketch folder, or one of its parent folders.
+
+<h4>Node http-server</h4>
+Node.js is a javascript library framework that provides distributed Web client/server functionality to javascript. We will only be using the stand-alone <code>http-server</code> to provide a light-weight local Web server so that we can develop and run Web-ready sketches on our machines without requiring logging into a production Web server.<br /><br />
+To begin, download and install <a href="http://nodejs.org/download">node.js</a>. Then, open a terminal or command prompt and do the following:
+
+On OSX/Linux type:
+<pre style="background:#F0F0FF;width:800px;">
+sudo npm install -g http-server
+</pre>
+
+On Windows type (you might need to open the command prompt as admin)
+<pre style="background:#F0F0FF;width:800px;">
+npm install -g http-server
+</pre>
+
+Then you're done!
+
+From then on, open a terminal and <code>cd YOUR_SKETCH_DIR</code> for the files you want to serve and type:
+
+<pre style="background:#F0F0FF;width:800px;">
+http-server
+</pre>
+
+This will run the Web server in the terminal. Now, go back to your browser and in its address bar type <code>http://localhost:8080/</code>, and the Web files and folders should work as expected, with images, videos, and sounds served from your sketch folder. Do not try to use the File->open menu option in the browser to open your .html files, as they will not be able to load image/video/audio assets this way. So, always use <code>http://localhost:8080/</code>
+
+<h2>Image</h2>
+
+We load images into p5js using <code>loadImage()</code>. Make sure your images are stored in a folder within the current sketch folder. 
+<pre>
+var im;
+
+function preload(){ // Use to load assets into sketch
+	im = loadImage("assets/chdm_big.jpg");	
+}
+
+function setup(){
+	createCanvas(400,400);
+}
+
+function draw(){
+	image(im, 0, 0, width, height);	// scale to width and height
+}
+</pre>
+<iframe width=410 height=320 src="ex01.html">
+</iframe>
+
+</body>
+</html>
