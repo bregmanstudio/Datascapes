@@ -11,9 +11,11 @@ function setup(){
 
 function draw(){
 	image(im, 0, 0, width, height);	// draw the image
-	var c = get(mouseX,mouseY); // retrieve the color value at screen pixel coordinate
+	loadPixels(); // A faster way to access screen image data
+	idx = int(4*(round(mouseY)*width+round(mouseX))); // 4 values per pixel RGBA
+	c = color(pixels[idx+0],pixels[idx+1],pixels[idx+2]); // color channels RGB,(+A)
 	fill(c); // set the fill color to the retrieved color value
 	rect(mouseX+10,mouseY,30,30); // display the color of 1 pixel as a large square
 	fill(255);
-	text("r="+red(c)+", g="+green(c)+", b="+blue(c),5,10);	
+	text("r="+red(c)+", g="+green(c)+", b="+blue(c),5,10);
 }

@@ -59,8 +59,6 @@ function draw(){
 
 <h2>Pixels</h2>
 <code>var c = get(x,y)</code> will give you a local variable <code>c</code> containing the color value on the screen at coordinate <code>x,y</code>. These <code>get()</code> and </code>set()</code> accessor methods incurr significant computation overhead due to calling a function on every pixel access. Function calls require additional operations, like saving state, pushing a stack, moving he program counter, and then all again in reverse after the function completes. 
-<br /><br />
-Use <code>loadPixels()</code> with <code>var c = pixels[4*(y*width+x)]</code> for more efficient array-based access to data values for individual pixels in an image. Use <code>updatePixels()</code> if you modify any values in the <code>pixels[]</code> buffer, via assignment <code>pixels[4*(y*width+x)] = c</code>, so that they are subsequently displayed on the canvas (screen). 
 
 <pre>
 var im; // Global variable we will use to hold an image loaded from a file
@@ -79,9 +77,42 @@ function draw(){
 	var c = get(mouseX,mouseY); // retrieve the color value at screen pixel coordinate
 	fill(c); // set the fill color to the retrieved color value
 	rect(mouseX+10,mouseY,30,30); // display the color of 1 pixel as a large square
+	fill(255);
+	text("r="+red(c)+", g="+green(c)+", b="+blue(c),5,10);	
 }
 </pre>
 <iframe width=410 height=320 src="ex02.html">
+</iframe>
+
+<h2><code>loadPixels(), pixels[4*(y*width+x)+ch]</code></h2>
+
+Use <code>loadPixels()</code> with <code>var c = pixels[4*(y*width+x)+ch]</code> for more efficient array-based access to color channel [ch=0..3] values for individual pixels in an image. Use <code>updatePixels()</code> if you modify any values in the <code>pixels[]</code> buffer, via assignment <code>pixels[4*(y*width+x)] = c</code>, so that they are subsequently displayed on the canvas (screen). It is necessary to convert decimal coordinates into integers using <code>round()</code> and <code>int()</code> as in the example below, so that the <code>pixels[]</code> array gets an integer index.
+
+<pre>
+var im; // Global variable we will use to hold an image loaded from a file
+
+function preload(){
+	im = loadImage("assets/chdm_big.jpg");	
+}
+
+function setup(){
+	createCanvas(400,300);
+	noStroke();
+}
+
+function draw(){
+	image(im, 0, 0, width, height);	// draw the image
+	loadPixels(); // A faster way to access screen image data
+	idx = int(4*(round(mouseY)*width+round(mouseX))); // 4 values per pixel RGBA
+	c = color(pixels[idx+0],pixels[idx+1],pixels[idx+2]); // color channels RGB,(+A)
+	fill(c); // set the fill color to the retrieved color value
+	rect(mouseX+10,mouseY,30,30); // display the color of 1 pixel as a large square
+	fill(255);
+	text("r="+red(c)+", g="+green(c)+", b="+blue(c),5,10);
+}
+</pre>
+
+<iframe width=410 height=320 src="ex03.html">
 </iframe>
 
 </body>
