@@ -57,5 +57,32 @@ function draw(){
 <iframe width=410 height=320 src="ex01.html">
 </iframe>
 
+<h2>Pixels</h2>
+<code>var c = get(x,y)</code> will give you a local variable <code>c</code> containing the color value on the screen at coordinate <code>x,y</code>. These <code>get()</code> and </code>set()</code> accessor methods incurr significant computation overhead due to calling a function on every pixel access. Function calls require additional operations, like saving state, pushing a stack, moving he program counter, and then all again in reverse after the function completes. 
+<br /><br />
+Use <code>loadPixels()</code> with <code>var c = pixels[4*(y*width+x)]</code> for more efficient array-based access to data values for individual pixels in an image. Use <code>updatePixels()</code> if you modify any values in the <code>pixels[]</code> buffer, via assignment <code>pixels[4*(y*width+x)] = c</code>, so that they are subsequently displayed on the canvas (screen). 
+
+<pre>
+var im; // Global variable we will use to hold an image loaded from a file
+
+function preload(){
+	im = loadImage("assets/chdm_big.jpg");	
+}
+
+function setup(){
+	createCanvas(400,300);
+	noStroke();
+}
+
+function draw(){
+	image(im, 0, 0, width, height);	// draw the image
+	var c = get(mouseX,mouseY); // retrieve the color value at screen pixel coordinate
+	fill(c); // set the fill color to the retrieved color value
+	rect(mouseX+10,mouseY,30,30); // display the color of 1 pixel as a large square
+}
+</pre>
+<iframe width=410 height=320 src="ex02.html">
+</iframe>
+
 </body>
 </html>
